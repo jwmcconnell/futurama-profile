@@ -1,4 +1,4 @@
-const { getTweet } = require('./dataHelpers');
+const { getProfile } = require('./dataHelpers');
 const request = require('supertest');
 const app = require('../lib/app');
 
@@ -24,6 +24,23 @@ describe('GET profiles', () => {
       .then(res => {
         expect(res.body).toEqual(expect.any(Array));
         expect(res.body[0]).toEqual({
+          _id: expect.any(String),
+          name: expect.any(String),
+          favoriteCharacter: expect.any(String),
+          tagline: expect.any(String),
+          __v: 0
+        });
+        expect(res.status).toEqual(200);
+      });
+  });
+
+  it('returns a profile by id', async() => {
+    const { _id } = await getProfile();
+    return request(app)
+      .get(`/api/v1/profiles/${_id}`)
+      .then(res => {
+        expect(res.body).toEqual(expect.any(Object));
+        expect(res.body).toEqual({
           _id: expect.any(String),
           name: expect.any(String),
           favoriteCharacter: expect.any(String),
