@@ -1,0 +1,35 @@
+{
+  "name": "futurama-profile",
+  "version": "1.0.0",
+  "description": "Handles crud operations for a futurama profile",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:watch": "nodemon server.js",
+    "test": "jest --verbose --runInBand",
+    "test:watch": "npm run test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwmcconnell/futurama-profile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jwmcconnell/futurama-profile/issues"
+  },
+  "homepage": "https://github.com/jwmcconnell/futurama-profile#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.2.7",
+    "mongoose": "^5.6.4"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
+  }
+}
