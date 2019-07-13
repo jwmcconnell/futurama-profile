@@ -51,3 +51,14 @@ describe('GET profiles', () => {
       });
   });
 });
+
+describe('POST profiles', () => {
+  it('returns a profile and creates it in the db', () => {
+    return request(app)
+      .post('/api/v1/profiles')
+      .send({ name: 'Jack', favoriteCharacter: 'Bender' })
+      .then(res => {
+        console.log(res.body);
+      });
+  });
+});
