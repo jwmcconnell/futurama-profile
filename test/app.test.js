@@ -79,4 +79,14 @@ describe('POST profiles', () => {
         expect(res.body).toEqual('Please provide a name for your profile');
       });
   });
+
+  it('returns an error if no name is provided', () => {
+    return request(app)
+      .post('/api/v1/profiles')
+      .send({ name: 'Jack', favoriteCharacter: '' })
+      .then(res => {
+        expect(res.status).toEqual(400);
+        expect(res.body).toEqual('Please provide a favorite character for your profile');
+      });
+  });
 });
