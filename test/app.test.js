@@ -58,7 +58,25 @@ describe('POST profiles', () => {
       .post('/api/v1/profiles')
       .send({ name: 'Jack', favoriteCharacter: 'Bender' })
       .then(res => {
-        console.log(res.body);
+        expect(res.body).toEqual(expect.any(Object));
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          name: expect.any(String),
+          favoriteCharacter: expect.any(String),
+          tagline: expect.any(String),
+          __v: 0
+        });
+        expect(res.status).toEqual(200);
+      });
+  });
+
+  it('returns an error if no name is provided', () => {
+    return request(app)
+      .post('/api/v1/profiles')
+      .send({ name: '', favoriteCharacter: 'Bender' })
+      .then(res => {
+        expect(res.status).toEqual(400);
+        expect(res.body).toEqual('Please provide a name for your profile');
       });
   });
 });
