@@ -120,3 +120,16 @@ describe('PATCH profiles', () => {
       });
   });
 });
+
+describe('DELETE profiles route', () => {
+  it('deletes a profile and returns the deleted profile', async() => {
+    const { _id, name } = await getProfile();
+    return request(app)
+      .delete(`/api/v1/profiles/${_id}`)
+      .then(res => {
+        expect(res.status).toEqual(200);
+        expect(res.body._id).toEqual(_id);
+        expect(res.body.name).toEqual(name);
+      });
+  });
+});
