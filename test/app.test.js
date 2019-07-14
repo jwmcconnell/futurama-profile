@@ -92,7 +92,7 @@ describe('POST profiles', () => {
 });
 
 describe('PATCH profiles', () => {
-  it('Updates users favorites character', async() => {
+  it('updates users favorites character', async() => {
     const { _id, name } = await getProfile();
     return request(app)
       .patch(`/api/v1/profiles/${_id}`)
@@ -107,6 +107,16 @@ describe('PATCH profiles', () => {
         });
         expect(res.body.favoriteCharacter).toEqual('Leela');
         expect(res.status).toEqual(200);
+      });
+  });
+
+  it('returns an error when no character is provided for the update', async() => {
+    const { _id } = await getProfile();
+    return request(app)
+      .patch(`/api/v1/profiles/${_id}`)
+      .then(res => {
+        expect(res.body).toEqual('Please provide a favorite character for your profile');
+        expect(res.status).toEqual(400);
       });
   });
 });
