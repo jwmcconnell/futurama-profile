@@ -90,3 +90,23 @@ describe('POST profiles', () => {
       });
   });
 });
+
+describe('PATCH profiles', () => {
+  it('Updates users favorites character', async() => {
+    const { _id, name } = await getProfile();
+    return request(app)
+      .patch(`/api/v1/profiles/${_id}`)
+      .send({ favoriteCharacter: 'Leela' })
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          name,
+          favoriteCharacter: expect.any(String),
+          tagline: expect.any(String),
+          __v: 0
+        });
+        expect(res.body.favoriteCharacter).toEqual('Leela');
+        expect(res.status).toEqual(200);
+      });
+  });
+});
