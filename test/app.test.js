@@ -80,7 +80,7 @@ describe('POST profiles', () => {
       });
   });
 
-  it('returns an error if no name is provided', () => {
+  it('returns an error if no character is provided', () => {
     return request(app)
       .post('/api/v1/profiles')
       .send({ name: 'Jack', favoriteCharacter: '' })
